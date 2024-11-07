@@ -1,0 +1,52 @@
+{% extends "coreapp/base.html" %}
+{% block content %} 
+
+<div class='col-sm-6 my-5 offset-3'>
+    <div class= 'header-bar'>
+        <h1>Welcome {{request.user | title}}</h1>
+        <p class='text-end'><a class="text-white" href="{% url 'logout' %}" style="text-decoration: none" >Logout</a></p>
+    </div>
+    <div class='border bg-secondary text-white'>
+        <div class="col-sm-10 my-4 offset-1"> 
+
+          {% if messages %}
+          {% for message in messages%}
+          <p {% if message %} class= 'alert alert-{{message.tags}} mb-5' {% endif %}>{{message}}</p>
+          {% endfor %}
+          {% endif %}
+
+          <div class="topnav">
+
+            <form action="{% url 'search' %}" method="POST">
+              {% csrf_token %}
+              <input type="Search" placeholder="Search.." name='searched'>
+              <button type="submit" class='btn btn-danger'>Search</button>
+            </form>
+
+            {% if fm%}
+            <a href="{% url 'add' %}" class='text-decoration-none text-white fs-2 ' style='float: right;'>&#43;</a>
+          </div> 
+
+            <table class="table table-hover">
+              
+              {% for i in fm %}
+                <tbody>
+                  <tr>
+                    <th scope="row">&#x2022;</th>
+                    <td><a href="{% url 'update' i.id %}" class='text-decoration-none text-black'>{{i.title}}</a></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                      <a href="{% url 'remove' i.id %}" class='text-decoration-none'>&#10005;</a>
+                    </td>
+                  </tr>
+                </tbody>
+              {% endfor %}
+              {% else %}
+              <p class='text-center my-5'>No new tasks are created.<br>Create a <a href="{% url 'add' %}" class='text-decoration-none text-warning'>New task </a>!</p>
+            </table>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

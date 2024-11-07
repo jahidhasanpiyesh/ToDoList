@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'coreapp/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'coreapp/css/style.css' %}">
+    <title>Base</title>
+
+    
+</head>
+<body style="background-color: rgb(126, 42, 77);">
+    
+    <div class="container">
+        {% block content %} {% endblock content %}
+    </div>
+    
+    <script src="{% static 'coreapp/js/bootstrap.js' %}"></script>
+    <script src="{% static 'coreapp/js/jquery.js' %}"></script>
+    <script src="{% static 'coreapp/js/popper.js' %}"></script>
+</body>
+</html>

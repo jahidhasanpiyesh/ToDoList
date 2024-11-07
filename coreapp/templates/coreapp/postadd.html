@@ -1,0 +1,23 @@
+{% extends "coreapp/base.html" %}
+{% block content %} 
+
+<div class='col-sm-6 my-5 offset-3'>
+    <div class= 'header-bar'>
+        <h1>Post Add</h1>
+    </div>
+    <div class='border bg-secondary text-white'>
+        <div class="col-sm-10 my-4 offset-1">
+            <form action="" method="post">
+                {% csrf_token %}
+                {% for i in fm %}
+                {{i.label_tag}} {{i}} {{i.errors | striptags }} <br>
+                {% endfor %}
+                <div class='text-center'>
+                    <a href="{% url 'deshbord' %}" class='text-decoration-none btn btn-info btn-sm-5 mx-5'>Back</a>
+                    <input type="submit" class='btn btn-danger btn-sm-5 mx-5' value="Submit">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
